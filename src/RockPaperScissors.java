@@ -31,6 +31,7 @@ public class RockPaperScissors {
                     System.out.println("Wrong answer (try " + i + " of 3)");
                 } finally {
                     if (i > 2) {
+                        System.out.println("Game over");
                         return;
                     }
                 }
