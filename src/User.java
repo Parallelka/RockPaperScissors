@@ -3,7 +3,7 @@ import java.util.Scanner;
 public class User {
     private Selection move;
 
-    public boolean doMove() {
+    public void doMove() throws IllegalArgumentException {
         Scanner inputScanner = new Scanner(System.in);
         System.out.println("Please choose: ROCK (r), PAPER (p), SCISSORS (s)");
         String choose = inputScanner.nextLine().toUpperCase();
@@ -17,15 +17,13 @@ public class User {
             case "S":
                 choose = "SCISSORS";
         }
-        if (choose.equals("ROCK") || choose.equals("PAPER") || choose.equals("SCISSORS")) {
-            move = Selection.valueOf(choose);
-            return true;
-        }
-
-        return false;
+        move = Selection.valueOf(choose);
     }
 
-    public Selection getMove() {
+    public Selection getMove() throws IllegalStateException {
+        if (move == null) {
+            throw new IllegalStateException("The Move is not choose");
+        }
         return move;
     }
 }

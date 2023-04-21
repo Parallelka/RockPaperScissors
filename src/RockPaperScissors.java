@@ -22,11 +22,17 @@ public class RockPaperScissors {
         while (!game.isGameOver()) {
             computer.doMove();
             int i = 0;
-            while (!user.doMove()) {
-                i++;
-                System.out.println("Wrong answer (try " + i + " of 3)");
-                if (i > 2) {
-                    return;
+            while (i <= 2) {
+                try {
+                    user.doMove();
+                    break;
+                } catch (IllegalArgumentException e) {
+                    i++;
+                    System.out.println("Wrong answer (try " + i + " of 3)");
+                } finally {
+                    if (i > 2) {
+                        return;
+                    }
                 }
             }
             computer.showMove();
